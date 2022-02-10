@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<section class="settings-section">
+      <div class="hero">
+            <nav>
+                  <ul>
+                        <li><a class="noDecoration" href="{% url 'emobot:public-profile' %}"> Public Profile </a></li>
+                        <li><a class="noDecoration" href="{% url 'emobot:account-settings' %}"> Account Settings </a></li>
+                        <li><a class="noDecoration" href="{% url 'emobot:change-password' %}"> Change Password </a></li>
+                        <li><img src="{% static '/img/moon.png' %}" id="icon"></li>
+                  </ul>    
+            </nav>
+            <div class="container1">
+                  <div class="title1">Public Profile</div>
+                  <center>
+                        <div style="color: green;">
+                        {%for message in messages %}
+                              {%if "updated_p" in message.tags %}
+                                  <p> {{message}} </p>   
+                              {%endif%}
+                        {%endfor%}
+                      </div>
+                        </center>
+                  <img src="{% static '/img/profile.jpg' %}" class="profile">
+                        <div div class="content1">
+                              <form action="" method="POST" enctype="multipart/form-data">
+                                    {% csrf_token %}
+
+<!--                                     {% for user in users %} 
+                                          {% if user.image %}
+                                          <img src="{{ user.image.url }}">
+                                          {% endif %}
+                                    {% endfor%} -->
+                              
+                                    <input type="file" name="image" class="form-control">  
+                                    <div class="user-details1">
+                                    <div class="input-box1">
+                                    <span class="details1">Firstname</span>
+                                    <input type="text" name="firstName" placeholder="Change your firstname" value="{{user.firstName}}">
+                                    </div>
+                                    <div class="input-box1">
+                                          <span class="details1">Lastname</span>
+                                          <input type="text" name="lastName" placeholder="Change your lastname" value="{{user.lastName}}">
+                                    </div>
+                                    <div class="input-box1">
+                                          <span class="details1">Short Bio</span>
+                                          <input type="text" id="bio" name="bio" placeholder="Describe yourself" value="{{user.shortbio}}">
+                                    </div>
+                                    </div>
+                                    <div class="button1">
+                                          <input type="submit" value="Save" id="save1" name="save1">
+                              </form>      
+                                          <a href="{% url 'emobot:public-profile' %}"><button type="button" class="cancel"> Cancel </button></a>
+                                    </div>
+                        </div>
+            </div>
+      </div>
+</section>
+{% endblock content %}

@@ -1,0 +1,42 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+{% block headerinclude %}
+    <title>Emobot</title>
+    <link rel="stylesheet" href="{% static '/css/login.css' %}">
+{% endblock headerinclude %}
+
+{% block content %}
+    <div class="wrapper">
+      <div class="title">Activate Account</div>
+      <form method="post">
+        {% csrf_token %}    
+
+          <center>
+                      <div style="color: red;">
+                        {%for message in messages %}
+                              {%if "invalid_code" in message.tags %}
+                                  <p> {{message}} </p>   
+                              {%endif%}
+                        {%endfor%}
+                      </div>
+                      <div style="color: green;">
+                        {%for message in messages %}
+                              {%if "activated" in message.tags %}
+                                  <p> {{message}} </p>   
+                              {%endif%}
+                        {%endfor%}
+                      </div>
+          </center>
+         <center><label>Enter your activation code</label></center>
+        <div class="field">
+          <input type="text" name="code" required>
+          <label>Activation Code</label>
+        </div>      
+        <div class="field">
+          <input type="submit" value="Activate" id="activate" name="activate">
+        </div>
+      </form>
+    </div>
+{% endblock content %}

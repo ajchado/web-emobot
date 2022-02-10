@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<section class="settings-section">
+    <div class="hero">
+            <nav>
+                <ul>
+                    <li><a class="noDecoration" href="{% url 'emobot:public-profile' %}"> Public Profile </a></li>
+                    <li><a class="noDecoration" href="{% url 'emobot:account-settings' %}"> Account Settings </a></li>
+                    <li><a class="noDecoration" href="{% url 'emobot:change-password' %}"> Change Password </a></li>
+                    <li><img src="{% static '/img/moon.png' %}" id="icon"></li>
+                </ul>    
+            </nav>
+            <div class="dcontainer">
+                <div class="title">Delete Account</div>
+                <br>
+                <span class="details">Deleting your account means you won't be able to 
+                    get your records back. 
+                    All your Emobot account data will be deleted</span>
+                <div class="content">
+                    <form action="" method="POST">
+                        {% csrf_token %}
+                        <br>
+                        <img src="{% static '/img/profile.jpg' %}" class="dprofile">
+                          
+                         <div class="delname">{{user.firstName}} {{user.lastName}}</div>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <div class="button">
+                            <input type="submit" value="Delete Anyway" id="del" name="del">
+                    </form>
+                            <a href="{% url 'emobot:account-settings' %}"><button type="button" class="cancel"> Cancel </button></a>
+                        </div>
+                    
+                </div>
+            </div>
+    </div>
+</section>
+{% endblock content %}

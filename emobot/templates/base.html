@@ -1,0 +1,120 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+{% block headerinclude %}
+    <title>Emobot</title>
+    <link rel="stylesheet" href="{% static '/css/navbar.css' %}">
+    <link rel="stylesheet" href="{% static '/css/datatable.css' %}">
+    <link rel="stylesheet" href="{% static '/css/home.css' %}">
+    <link rel="stylesheet" href="{% static '/css/setting.css' %}">
+    <link rel="stylesheet" href="{% static '/css/account-settings.css' %}">
+    <link rel="stylesheet" href="{% static '/css/change-password.css' %}">
+    <link rel="stylesheet" href="{% static '/css/public-profile.css' %}">
+    <link rel="stylesheet" href="{% static '/css/delete-account.css' %}">
+    <!-- Boxicons CDN Link -->
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.14/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,300;0,400;0,500;0,600;0,700;1,800&display=swap" rel="stylesheet">
+    <style>
+        :root{
+    --primary-color: rgb(187,187,245);
+    --secondary-color: #000106;
+    }
+
+    .dark-theme{
+        --primary-color: #431C52;
+        --secondary-color: #efefef;
+    }
+    </style>
+{% endblock headerinclude %}
+
+    <div class="sidebar">
+        <div class="logo-details">
+        <i class='bx bxs-bot'></i>
+            <div class="logo_name">EmoBot</div>
+            <i class='bx bx-menu' id="btn" ></i>
+        </div>
+        <ul class="nav-list">
+        <li>
+            <i class='bx bx-search' ></i>
+            <input type="text" placeholder="Search...">
+            <span class="tooltip">Search</span>
+        </li>
+        <li>
+                <a href="{% url 'emobot:home' %}">
+                <i class='bx bx-home'></i>
+                <span class="links_name">Home</span>
+                </a>
+                <span class="tooltip" >Home</span>
+            </li>
+            {% if user.isAdmin == True and user.isLoggedIn == True %}
+            <li>
+                <a href="{% url 'emobot:dashboard' %}">
+                <i class='bx bx-grid-alt'></i>
+                <span class="links_name">Dashboard</span>
+                </a>
+                <span class="tooltip" >Dashboard</span> 
+            </li>
+            {% endif %}
+            <li>
+            <a href="{% url 'emobot:user' %}">
+                <i class='bx bx-user' ></i>
+                <span class="links_name">User</span>
+            </a>
+            <span class="tooltip">User</span>
+            </li>
+            <li>
+            <a href="{% url 'emobot:public-profile' %}">
+                <i class='bx bx-cog' ></i>
+                <span class="links_name">Settings</span>
+            </a>
+            <span class="tooltip">Settings</span>
+            </li>
+            <li>
+            <a href="{% url 'emobot:logout' %}">
+                <i class='bx bx-log-out' ></i>
+                <span class="links_name">Logout</span>
+            </a>
+            <span class="tooltip">Logout</span>
+            </li>
+        <li class="profile">
+            <div class="profile-details">
+                <img src="{% static '/img/profile.jpg' %}" alt="profileImg">
+                <div class="name_job">
+                 
+                 <div class="name">{{user.firstName}} {{user.lastName}}</div>
+                 
+                <div class="job">Web Designer</div>
+                </div>
+            </div>
+            <i class='bx bxs-wink-smile' id="log_out" ></i>
+        </li>
+        </ul>
+    </div>
+{% block content %}
+
+{% endblock content %}
+
+
+{% block footerinclude %}
+    <script src="{% static '/js/navbar.js' %}"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.14/js/jquery.dataTables.min.js"></script>
+    <script src="{% static '/js/datatable.js' %}"></script>
+    <script>
+        var icon = document.getElementById("icon");
+        icon.onclick = function(){
+        document.body.classList.toggle("dark-theme");
+        if(document.body.classList.contains("dark-theme")){
+                icon.src = "/static/img/sun.png";
+        }else{
+                icon.src = "/static/img/moon.png"
+        }
+        }
+    </script>
+{% endblock footerinclude %}

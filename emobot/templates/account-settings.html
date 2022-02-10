@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<section class="settings-section">
+    <div class="hero">
+            <nav>
+                <ul>
+                    <li><a class="noDecoration" href="{% url 'emobot:public-profile' %}"> Public Profile </a></li>
+                    <li><a class="noDecoration" href="{% url 'emobot:account-settings' %}"> Account Settings </a></li>
+                    <li><a class="noDecoration" href="{% url 'emobot:change-password' %}"> Change Password </a></li>
+                    <li><img src="{% static '/img/moon.png' %}" id="icon"></li>
+                </ul>    
+            </nav>
+            <div class="acontainer">
+                <div class="title">Account Settings</div>
+                <div class="content">
+                    <form action="" method="POST">
+                        {% csrf_token %}
+                        <center>
+                        <div style="color: green;">
+                        {%for message in messages %}
+                              {%if "updated" in message.tags %}
+                                  <p> {{message}} </p>   
+                              {%endif%}
+                        {%endfor%}
+                      </div>
+                        <div style="color: red;">
+                        {%for message in messages %}
+                              {%if "email_exist" in message.tags %}
+                                  <p> {{message}} </p>   
+                              {%endif%}
+                        {%endfor%}
+                      </div>
+                                              <div style="color: red;">
+                        {%for message in messages %}
+                              {%if "username_exist" in message.tags %}
+                                  <p> {{message}} </p>   
+                              {%endif%}
+                        {%endfor%}
+                      </div>
+                        </center>
+                        <div class="user-details">
+                        <div class="input-box">
+                            <span class="details">Username</span>
+                            <input type="text" name="username" placeholder="Change your Username" required>
+                        </div>
+                        <div class="input-box">
+                            <span class="details">Email</span>
+                            <input type="email" name="email" placeholder="Change your Email"required>
+                         </div>
+                        <div class="gender-details" required>
+                        <input type="radio" name="gender" id="dot-1" value="Male">
+                        <input type="radio" name="gender"  id="dot-2" value="Female">
+                        <input type="radio" name="gender"  id="dot-3" value="Prefer not to say">
+                        <span class="gender-title">Gender</span>
+                        <div class="category">
+                            <label for="dot-1">
+                            <span class="dot one"></span>
+                            <span class="gender">Male</span>
+                        </label>
+                        <label for="dot-2">
+                            <span class="dot two"></span>
+                            <span class="gender">Female</span>
+                        </label>
+                        <label for="dot-3">
+                            <span class="dot three"></span>
+                            <span class="gender">Prefer not to say</span>
+                            </label>
+                        </div>
+                        </div>
+                        <div class="dtitle">Delete Account</div>
+                        <span class="ddetails">Delete your account and account data</span>
+                        <a class="adelete" href="{% url 'emobot:delete-account' %}">Delete</a>
+                        <div class="button">
+                            <br>
+                            <input type="submit" value="Save" id="save" name="save">
+                    </form>
+                            <a href="{% url 'emobot:account-settings' %}"><button type="button" class="cancel"> Cancel </button></a>
+                        </div>
+                    
+                </div>
+            </div>
+    </div>
+</section>
+{% endblock content %}

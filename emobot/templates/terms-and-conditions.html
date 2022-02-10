@@ -1,0 +1,78 @@
+{% load static %}
+
+<!DOCTYPE html>
+{% block headerinclude %}
+    <title>Emobot</title>
+    <link rel="stylesheet" href="{% static '/css/register.css' %}">
+{% endblock headerinclude %}
+
+{% block content %}
+  <div class="container">
+
+      <!-- successfuly registered message-->
+  <div>
+    <center>
+      <div style="color: green;">
+        {%for message in messages %}
+              {%if "successful" in message.tags %}
+                  <p> {{message}} </p>   
+              {%endif%}
+        {%endfor%}
+      </div>  
+      <div style="color: red;">
+        {%for message in messages %}
+              {%if "password_error" in message.tags %}
+                  <p> {{message}} </p>   
+              {%endif%}
+        {%endfor%}
+      </div>
+      <div style="color: red;">
+        {%for message in messages %}
+              {%if "user_error" in message.tags %}
+                  <p> {{message}} </p>   
+              {%endif%}
+        {%endfor%}
+      </div>
+      <div style="color: red;">
+        {%for message in messages %}
+              {%if "pass_long" in message.tags %}
+                  <p> {{message}} </p>   
+              {%endif%}
+        {%endfor%}
+      </div>
+            <div style="color: red;">
+        {%for message in messages %}
+              {%if "pass_num" in message.tags %}
+                  <p> {{message}} </p>   
+              {%endif%}
+        {%endfor%}
+      </div>
+            <div style="color: red;">
+        {%for message in messages %}
+              {%if "pass_cap" in message.tags %}
+                  <p> {{message}} </p>   
+              {%endif%}
+        {%endfor%}
+      </div>
+    </center> 
+    </div>
+
+<h1 style="text-align: center;">Terms and Conditions</h1>
+<br>
+<h6>In using this website you are deemed to have read and agreed to the following terms and conditions:</h6>
+
+<h4>Privacy Statement</h4>
+<p style="font-size: 12px; text-align:justify;">We are committed to protecting your privacy. Authorized employees within the company on a need to know basis only use any information collected from individual customers. We constantly review our systems and data to ensure the best possible service to our customers. Parliament has created specific offences for unauthorised actions against computer systems and data. We will investigate any such actions with a view to prosecuting and/or taking civil proceedings to recover damages against those responsible</p>
+<br>
+<h4>Confidentiality</h4>
+<p style="font-size: 12px; text-align: justify;">We are registered under the Data Protection Act 1998 and as such, any information concerning the Client and their respective Client Records may be passed to third parties. However, Client records are regarded as confidential and therefore will not be divulged to any third party, other than our manufacturer/supplier(s) and if legally required to do so to the appropriate authorities. Clients have the right to request sight of, and copies of any and all Client Records we keep, on the proviso that we are given reasonable notice of such a request. Clients are requested to retain copies of any literature issued in relation to the provision of our services. Where appropriate, we shall issue Client’s with appropriate written information, handouts or copies of records as part of an agreed contract, for the benefit of both parties.</p>
+    <div class="content">
+      <form action="" method="POST" enctype="multipart/form-data" action="{% url 'emobot:register' %}">
+        {% csrf_token %}
+        <div class="button">
+          <input type="submit" value="Accept" id="register" name="register">
+        </div>
+      </form>
+    </div>
+  </div>
+{% endblock content %}
