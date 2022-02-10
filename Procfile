@@ -1,2 +1,2 @@
-web: gunicorn webEmobot.wsgi --log-file - 
+web: gunicorn webEmobot.wsgi 
 
