@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-@y5a0lzy+yma%i6gzhd^ax3!$13e^df#f7jh2fjxwfem5dmac=
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['.example.com','web-emobot.herokuapp.com/','127.0.0.1']
+ALLOWED_HOSTS = ['.web-emobot.com','web-emobot.herokuapp.com/','127.0.0.1']
 
 
 # Application definition
