@@ -30,6 +30,6 @@ class EmotionTable(models.Model):
     SessionID = models.ForeignKey(SessionTable,on_delete=models.CASCADE)
     userID = models.ForeignKey(Person,on_delete=models.CASCADE)
     Emotion = models.CharField(max_length=30)
-    Time_Recorded = models.IntegerField(default = 0)
+    Time_Recorded = models.CharField(max_length=11)
     
 
