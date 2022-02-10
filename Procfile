@@ -1,2 +1,2 @@
-web: gunicorn webEmobot.wsgi 
+web: gunicorn web-emobot.wsgi 
 
