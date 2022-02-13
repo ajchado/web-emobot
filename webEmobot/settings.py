@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 import os
+import django_heroku
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
@@ -26,7 +27,11 @@ SECRET_KEY = 'django-insecure-@y5a0lzy+yma%i6gzhd^ax3!$13e^df#f7jh2fjxwfem5dmac=
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
+<<<<<<< Updated upstream
 ALLOWED_HOSTS = ['.web-emobot.com','web-emobot.herokuapp.com/','127.0.0.1']
+=======
+ALLOWED_HOSTS = ['web-emobot.herokuapp.com/','127.0.0.1']
+>>>>>>> Stashed changes
 
 
 # Application definition
@@ -146,3 +151,9 @@ EMAIL_PORT = '587'
 EMAIL_HOST_USER = 'zuugwe2@gmail.com'
 EMAIL_HOST_PASSWORD = 'svlgefzfdznslree'
 EMAIL_USE_TLS = True
+<<<<<<< Updated upstream
+=======
+
+# Activate Django-Heroku.
+django_heroku.settings(locals())
+>>>>>>> Stashed changes

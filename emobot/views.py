@@ -23,6 +23,7 @@ import csv
 class homeView(View):
     def get(self, request):
         users = Person.objects.all()
+        
         for user in users:
             if(user.isLoggedIn == True):
                 return render(request, 'home.html', {'user': user})
@@ -31,15 +32,11 @@ class homeView(View):
 
 class dashboardView(View):
     def get(self, request):
-        users = Person.objects.all()
         emotions = EmotionTable.objects.all()
         context = { 
-            'emotions': emotions,
-        }
-        for user in users:
-            if(user.isLoggedIn == True):
-                return render(request, 'dashboard.html', context)   
-                
+            'emotions': emotions,        
+        }  
+        return render(request, 'dashboard.html', context)   
         return redirect('emobot:login')
 
     def post(self, request):
